@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkbox</title>
+    <style>
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+    </style>
+</head>
+
+<body>
+    <h2>Checkbox Example with Select All</h2>
+
+    <label><input type="checkbox" id="selectAll"> Select All</label>
+    <br>
+    <label><input type="checkbox" id="checkbox1" name="checkbox1"> Checkbox 1</label>
+    <label><input type="checkbox" id="checkbox2" name="checkbox2"> Checkbox 2</label>
+    <label><input type="checkbox" id="checkbox3" name="checkbox3"> Checkbox 3</label>
+    <label><input type="checkbox" id="checkbox4" name="checkbox4"> Checkbox 4</label>
+    <script>
+        const checkboxes = {
+            checkbox1: false,
+            checkbox2: false,
+            checkbox3: false,
+            checkbox4: false,
+        };
+
+        function allFieldsFilled() {
+            return Object.values(checkboxes).every(input => input);
+        }
+
+        function handleCheckboxChange(checkboxName) {
+            checkboxes[checkboxName] = !checkboxes[checkboxName];
+            updateSelectAllCheckbox();
+        }
+
+        function toggleAllCheckboxes() {
+            const allChecked = allFieldsFilled();
+            for (const key in checkboxes) {
+                checkboxes[key] = !allChecked;
+                document.getElementById(key).checked = !allChecked;
+            }
+            updateSelectAllCheckbox();
+        }
+
+        function updateSelectAllCheckbox() {
+            const allChecked = allFieldsFilled();
+            document.getElementById('selectAll').checked = allChecked;
+        }
+
+        document.getElementById('selectAll').addEventListener('change', function () {
+            const isChecked = this.checked;
+            for (const key in checkboxes) {
+                checkboxes[key] = isChecked;
+                document.getElementById(key).checked = isChecked;
+            }
+        });
+
+            document.getElementById('checkbox1').addEventListener('change', function () {
+            handleCheckboxChange('checkbox1');
+        });
+        document.getElementById('checkbox2').addEventListener('change', function () {
+            handleCheckboxChange('checkbox2');
+        });
+        document.getElementById('checkbox3').addEventListener('change', function () {
+            handleCheckboxChange('checkbox3');
+        });
+        document.getElementById('checkbox4').addEventListener('change', function () {
+            handleCheckboxChange('checkbox4');
+        });
+    </script>
+</body>
+
+</html>
