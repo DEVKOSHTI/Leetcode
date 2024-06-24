@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkbox Select All</title>
+</head>
+<body>
+    <h3>Select Options:</h3>
+    <input type="checkbox" id="selectAll" onclick="toggleAll(this)"> Select All<br>
+    <input type="checkbox" class="option" onclick="checkSelectAll()"> Option 1<br>
+    <input type="checkbox" class="option" onclick="checkSelectAll()"> Option 2<br>
+    <input type="checkbox" class="option" onclick="checkSelectAll()"> Option 3<br>
+    <input type="checkbox" class="option" onclick="checkSelectAll()"> Option 4<br>
+
+    <script>
+        function toggleAll(source) {
+            const checkboxes = document.querySelectorAll('.option');
+            checkboxes.forEach(checkbox => {
+                checkbox.checked = source.checked;
+            });
+        }
+
+        function checkSelectAll() {
+            const selectAllCheckbox = document.getElementById('selectAll');
+            const checkboxes = document.querySelectorAll('.option');
+            const allChecked = Array.from(checkboxes).every(checkbox => checkbox.checked);
+            selectAllCheckbox.checked = allChecked;
+        }
+    </script>
+</body>
+</html>
