@@ -24,9 +24,10 @@
         function checkSelectAll() {
             const selectAllCheckbox = document.getElementById('selectAll');
             const checkboxes = document.querySelectorAll('.option');
-            const allChecked = Array.from(checkboxes).every(checkbox => checkbox.checked);
+            const allChecked = Array.from(checkboxes).any(checkbox => checkbox.checked);
             selectAllCheckbox.checked = allChecked;
         }
     </script>
+                    
 </body>
 </html>
